@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { clearCart, addToCart, removeFromCart } from "./redux/cart";
@@ -7,7 +6,7 @@ import { clearCart, addToCart, removeFromCart } from "./redux/cart";
 export default function Cart() {
     // The state to store the items in the cart
     // const [cartItems, setCartItems] = useState([]);
-    const {cartItems} = useSelector((state) => state.cart);
+    const cartItems = useSelector((state) => state.cart.cartItems);
     const dispatch = useDispatch();
 
     // The function to add an item to the cart
@@ -57,8 +56,6 @@ export default function Cart() {
 
     // useEffect(() => {
     // }, [cartItems]);
-
-
 
     return (
         <div className="cart">

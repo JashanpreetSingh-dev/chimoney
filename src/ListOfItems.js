@@ -7,9 +7,19 @@ import { useDispatch } from "react-redux";
 import { setItem } from "./redux/itemPage";
 import Cart from "./Cart";
 
+import { useSelector } from "react-redux";
+
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 export default function ListOfItems() {
     const [items, setItems] = useState([]);
     const dispatch = useDispatch();
+
+    const quantity = useSelector((state) => state.cart.quantity);
+    console.log("Quantity-----------------" + quantity);
 
     useEffect(() => {
         const options = {
@@ -36,6 +46,23 @@ export default function ListOfItems() {
     return (
         <div>
             <Cart></Cart>
+
+            <div style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                width: "99%",
+                height: "99px",
+                backgroundColor: "white",
+            }}>
+                <IconButton aria-label="cart">
+                    <Badge badgeContent={quantity} color="error">
+                        <ShoppingCartIcon />
+                    </Badge>
+                </IconButton>
+            </div>
+
             <h1>Items</h1>
             <ul style={{
                 display: "flex",

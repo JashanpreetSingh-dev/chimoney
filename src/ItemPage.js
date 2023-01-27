@@ -1,8 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from 'axios';
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "./redux/cart";
 
 export default function ItemPage() {
 
@@ -10,8 +8,16 @@ export default function ItemPage() {
     // const itemID = param.id;
 
     // const [item, setItem] = useState([]);
-    const {item} = useSelector((state) => state.itemPage);
+    const item = useSelector((state) => state.itemPage.item);
+    console.log("-------------ITEM-------------");
     console.log(item);
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart.cartItems);
+    console.log("-------------CART-------------");
+    console.log(cart);
+    // console.log(itemPage);
+
+    // useEffect(() => {}, [itemPage]);
 
     // useEffect(() => {
     //     const options = {
@@ -39,19 +45,63 @@ export default function ItemPage() {
 
 
     return (
-        <div id="itemPage">
-            <h1>{item.name}</h1>
-            <div className="item-page-image" style={{}}>
-                {/* <img src={item.images[0]} alt="Company Logo" style={{}}></img> */}
+        <div id="itemPage" style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+        }}>
+            <h1 style={{
+                textAlign: "center",
+            }}>{item.name}</h1>
+
+            <div className="item-page-image" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
+                <img src={item.images[0]} alt="Company Logo" style={{}}></img>
             </div>
-            <div className="item-page-price" style={{}}>
+            <div className="item-page-price" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
                 {item.price}
             </div>
             {/* <div className="item-page-description" style={{}}>
                 {item.description}
             </div> */}
+            <div className="item-page-button" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+            }}>
             <div className="item-page-button" style={{}}>
-                <button>Buy</button>
+                <button onClick={
+                    () => {
+                        dispatch(addToCart(item))
+                    }
+                }>Buy</button>
+            </div>
+            <div className="item-page-variants" style={{}}>
+                <select>
+                    {item.variants.map((variant) =>{
+                        return <option value={variant.id}>{variant.name}</option>
+                    })}
+                </select>
+            </div>
+            <div className="item-page-sizes" style={{}}>
+                <select>
+                    {item.sizes.map((size) =>{
+                        return <option value={size}>{size}</option>
+                    })}
+                </select>
+            </div>
+
             </div>
         </div>
     )
