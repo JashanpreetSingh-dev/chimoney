@@ -5,6 +5,7 @@ import ItemCard from "./ItemCard";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setItem } from "./redux/itemPage";
+import Cart from "./Cart";
 
 export default function ListOfItems() {
     const [items, setItems] = useState([]);
@@ -25,7 +26,7 @@ export default function ListOfItems() {
             .request(options)
             .then(function (response) {
                 console.log(response.data.data.benefitsList.slice(17, 34));
-                setItems(response.data.data.benefitsList.slice(17, 34) );
+                setItems(response.data.data.benefitsList.slice(17, 34));
             })
             .catch(function (error) {
                 console.error(error);
@@ -34,6 +35,7 @@ export default function ListOfItems() {
 
     return (
         <div>
+            <Cart></Cart>
             <h1>Items</h1>
             <ul style={{
                 display: "flex",
@@ -50,7 +52,7 @@ export default function ListOfItems() {
                     }>
                         <ItemCard item={item} key={item.id} style={{}}></ItemCard>
                     </Link>
-                    
+
                 ))}
             </ul>
         </div>

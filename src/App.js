@@ -3,6 +3,7 @@ import Cart from './Cart';
 import ListOfItems from './ListOfItems';
 import {BrowserRouter, Link, Route, Routes} from 'react-router-dom';
 import ItemPage from './ItemPage';
+import React from 'react';
 
 function App() {
   return (
