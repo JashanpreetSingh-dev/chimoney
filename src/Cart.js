@@ -61,9 +61,6 @@ export default function Cart() {
         <div className="cart">
             <h1>Cart</h1>
             <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
-            <button onClick={() => dispatch(addToCart({ id: 1, name: "Item 1", price: 10, description: "This is a description of item 1", quantity: 1 }))}>Add Item 1</button>
-            <button onClick={() => dispatch(addToCart({ id: 2, name: "Item 2", price: 20, quantity: 1 }))}>Add Item 2</button>
-            <button onClick={() => dispatch(addToCart({ id: 3, name: "Item 3", price: 30, quantity: 1 }))}>Add Item 3</button>
 
             <ul>
                 {

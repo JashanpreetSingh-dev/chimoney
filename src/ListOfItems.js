@@ -9,10 +9,7 @@ import Cart from "./Cart";
 
 import { useSelector } from "react-redux";
 
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 export default function ListOfItems() {
     const [items, setItems] = useState([]);
@@ -35,7 +32,7 @@ export default function ListOfItems() {
         axios
             .request(options)
             .then(function (response) {
-                console.log(response.data.data.benefitsList.slice(17, 34));
+                console.log(response.data.data);
                 setItems(response.data.data.benefitsList.slice(17, 34));
             })
             .catch(function (error) {
@@ -44,10 +41,14 @@ export default function ListOfItems() {
     }, []);
 
     return (
-        <div>
-            <Cart></Cart>
-
-            <div style={{
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "100px",
+        }}>
+            {/* <div style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-end",
@@ -56,14 +57,8 @@ export default function ListOfItems() {
                 height: "99px",
                 backgroundColor: "white",
             }}>
-                <IconButton aria-label="cart">
-                    <Badge badgeContent={quantity} color="error">
-                        <ShoppingCartIcon />
-                    </Badge>
-                </IconButton>
-            </div>
 
-            <h1>Items</h1>
+            </div> */}
             <ul style={{
                 display: "flex",
                 flexDirection: "row",
@@ -72,16 +67,21 @@ export default function ListOfItems() {
                 alignItems: "center",
             }}>
                 {items.map((item) => (
-                    <Link to={`/product/${item.id}`} key={item.id} onClick={
-                        () => {
-                            dispatch(setItem(item));
-                        }
-                    }>
+                    // <Link to={`/product/${item.id}`} key={item.id} onClick={
+                    //     () => {
+                    //         dispatch(setItem(item));
+                    //     }
+                    // } style={{
+                    //     textDecoration: "none",
+                    //     color: "black",
+                    // }}>
                         <ItemCard item={item} key={item.id} style={{}}></ItemCard>
-                    </Link>
+                    // {/* </Link> */}
 
                 ))}
             </ul>
+            <Cart></Cart>
+
         </div>
     );
 }
