@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "./redux/cart";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Button from "@mui/material/Button";
 
 export default function ItemPage() {
 
@@ -15,6 +18,10 @@ export default function ItemPage() {
     const cart = useSelector((state) => state.cart.cartItems);
     console.log("-------------CART-------------");
     console.log(cart);
+
+
+
+
     // console.log(itemPage);
 
     // useEffect(() => {}, [itemPage]);
@@ -50,58 +57,53 @@ export default function ItemPage() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            paddingTop: "100px",
         }}>
-            <h1 style={{
-                textAlign: "center",
-            }}>{item.name}</h1>
-
+            <div className="item-page-title" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "30px",
+                paddingBottom: "20px",
+            }}>
+                {item.productName}
+            </div>
             <div className="item-page-image" style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                paddingBottom: "20px",
             }}>
-                <img src={item.images[0]} alt="Company Logo" style={{}}></img>
+                <img src={item.img} alt="Company Logo" style={{
+                    width: "400px",
+                    objectFit: "contain",
+                }}></img>
             </div>
-            <div className="item-page-price" style={{
+            <div className="item-page-description" style={{}}>
+                {item.description}
+            </div>
+            <div className="item-page-redeemInstructions" style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
+                paddingBottom: "20px",
             }}>
-                {item.price}
             </div>
-            {/* <div className="item-page-description" style={{}}>
-                {item.description}
-            </div> */}
             <div className="item-page-button" style={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
             }}>
-            <div className="item-page-button" style={{}}>
-                <button onClick={
-                    () => {
-                        dispatch(addToCart(item))
-                    }
-                }>Buy</button>
-            </div>
-            <div className="item-page-variants" style={{}}>
-                <select>
-                    {item.variants.map((variant) =>{
-                        return <option value={variant.id}>{variant.name}</option>
-                    })}
-                </select>
-            </div>
-            <div className="item-page-sizes" style={{}}>
-                <select>
-                    {item.sizes.map((size) =>{
-                        return <option value={size}>{size}</option>
-                    })}
-                </select>
-            </div>
-
+                <Button onClick={() => dispatch(addToCart(item))} variant={"contained"} endIcon={<ShoppingCartIcon />}
+                    style={{
+                        backgroundColor: "#660a78",
+                    }}>
+                    Add to Cart
+                </Button>
             </div>
         </div>
     )

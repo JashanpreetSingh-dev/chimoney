@@ -2,19 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import ItemCard from "./ItemCard";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setItem } from "./redux/itemPage";
 import Cart from "./Cart";
-
 import { useSelector } from "react-redux";
 
 
 
 export default function ListOfItems() {
     const [items, setItems] = useState([]);
-    const dispatch = useDispatch();
-
     const quantity = useSelector((state) => state.cart.quantity);
     console.log("Quantity-----------------" + quantity);
 
@@ -32,8 +26,8 @@ export default function ListOfItems() {
         axios
             .request(options)
             .then(function (response) {
-                console.log(response.data.data);
-                setItems(response.data.data.benefitsList.slice(17, 34));
+                console.log(response.data.data.giftCardsRLD.content);
+                setItems(response.data.data.giftCardsRLD.content);
             })
             .catch(function (error) {
                 console.error(error);
@@ -48,17 +42,6 @@ export default function ListOfItems() {
             alignItems: "center",
             paddingTop: "100px",
         }}>
-            {/* <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                width: "99%",
-                height: "99px",
-                backgroundColor: "white",
-            }}>
-
-            </div> */}
             <ul style={{
                 display: "flex",
                 flexDirection: "row",
@@ -67,21 +50,9 @@ export default function ListOfItems() {
                 alignItems: "center",
             }}>
                 {items.map((item) => (
-                    // <Link to={`/product/${item.id}`} key={item.id} onClick={
-                    //     () => {
-                    //         dispatch(setItem(item));
-                    //     }
-                    // } style={{
-                    //     textDecoration: "none",
-                    //     color: "black",
-                    // }}>
-                        <ItemCard item={item} key={item.id} style={{}}></ItemCard>
-                    // {/* </Link> */}
-
+                        <ItemCard item={item} key={item.productId} style={{}}></ItemCard>
                 ))}
             </ul>
-            <Cart></Cart>
-
         </div>
     );
 }

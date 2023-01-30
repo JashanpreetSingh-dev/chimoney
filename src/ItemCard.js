@@ -1,12 +1,29 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useDispatch } from "react-redux";
 import { addToCart } from "./redux/cart";
 import { Link } from "react-router-dom";
+import { setItem } from "./redux/itemPage";
+import { useSelector } from "react-redux";
 
 export default function ItemCard(props) {
     const dispatch = useDispatch();
+
+    const AddedItems = useSelector((state) => state.cart.cartItems);
+
+    const isAdded = AddedItems.find((item) => item.productId === props.item.productId);
+
+    const getAddedCartItemQuantity = (item) => {
+        const addedItem = AddedItems.find((addedItem) => addedItem.productId === item.productId);
+        if (addedItem) {
+            return addedItem.quantity.toString();
+        } else {
+            return 0;
+        }
+    };
+
     return (
         <div className="item-card" style={{
             display: "flex",
@@ -16,11 +33,13 @@ export default function ItemCard(props) {
             padding: "10px",
             margin: "10px",
             width: "300px",
-            height: "350px",
+            height: "275px",
             backgroundColor: "white",
             borderRadius: "10px",
         }}>
-            <Link to={`product/${props.item.id}`} style={{
+            <Link to={`product/${props.item.productId}`} onClick={
+                () => dispatch(setItem(props.item))
+            } style={{
                 textDecoration: "none",
                 color: "black",
             }}>
@@ -30,7 +49,7 @@ export default function ItemCard(props) {
                         height: "100px",
                         display: "flex",
                     }}>
-                        <img src={props.item.images[0]} alt="Company Logo" style={{
+                        <img src={props.item.img} alt="Company Logo" style={{
                             width: "100%",
                             height: "100%",
                             objectFit: "contain",
@@ -40,41 +59,57 @@ export default function ItemCard(props) {
                     </div>
                     <div className="item-card-name" style={{
                         fontWeight: "bold",
-                        fontSize: "20px",
-                        padding: "10px",
+                        fontSize: "15px",
+                        padding: "20px",
                         fontFamily: "Monospace",
+                        textAlign: "center",
                     }}>{props.item.name}</div>
-                    <div className="item-card-description" style={{
+                    {/* <div className="item-card-description" style={{
                         fontSize: "12px",
                         textAlign: "left",
                         padding: "10px",
                         fontFamily: "Monospace",
                     }}>
-                        It is a long established fact that a reader will be distracted by the readable content of
-                        a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                        more-or-less normal distribution of letters.
-                    </div>
-                    <div className="item-card-price" style={{
-                        fontWeight: "bold",
-                        fontSize: "25px",
-                        fontFamily: "Monospace",
+                        {props.item.description}
+                    </div> */}
+                    {/* <div className="item-card-added" style={{
+                        fontSize: "12px",
+                        textAlign: "center",
                         padding: "10px",
-                    }}>${props.item.price}
-                    </div>
+                        fontFamily: "Monospace",
+                    }}>
+                        {
+                            isAdded ? "Added" : ""
+                        }
+                    </div> */}
                 </div>
             </Link>
 
 
             <div className="item-card-btn" style={{
                 width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "10px",
+                marginBottom: "0",
             }}>
-                <Button variant="contained" endIcon={<ShoppingCartIcon />} onClick={
+                <Button variant="contained" endIcon={
+                    isAdded ? <CheckCircleIcon /> : <ShoppingCartIcon />
+                } onClick={
                     () => { dispatch(addToCart(props.item)) }
-                } style={{
-                    backgroundColor: "#660a78",
-                    width: "100%",
-                }}>
-                    Quick Add
+                } style={
+                    isAdded ? {
+                        backgroundColor: "green",
+                        color: "white",
+                        width: "100%",
+                    } : {
+                        backgroundColor: "#660a78",
+                        color: "white",
+                        width: "100%",
+                    }
+                } >
+                    {isAdded ? "Added - " + getAddedCartItemQuantity(props.item) : "Add to Cart"}
                 </Button>
             </div>
 

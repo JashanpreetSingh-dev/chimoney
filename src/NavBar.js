@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
-import { createTheme, ThemeProvider } from '@mui/system';
+import { Link } from '@mui/material';
 
 export default function NavBar() {
 
@@ -24,12 +24,24 @@ export default function NavBar() {
                         backgroundColor: "#660a78"
                     }}>
                         <Toolbar>
-                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={
+                                () => {
+                                    window.location.href = "/";
+                                }
+                            } style={{
+                                cursor: "pointer",
+                                fontFamily: "Monospace",
+                            }}>
                                 Chimoney Shop
                             </Typography>
                             <IconButton aria-label="cart" color='inherit'>
                                 <Badge badgeContent={quantity} color="error">
-                                    <ShoppingCartIcon/>
+                                        <ShoppingCartIcon onClick={
+                                            () => {
+                                                window.location.href = "/cart";
+                                            }
+                                        } />
+
                                 </Badge>
                             </IconButton>
                         </Toolbar>
