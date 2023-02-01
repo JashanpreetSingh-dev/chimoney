@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearCart } from './redux/cart';
 
 const CheckoutForm = () => {
+
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -122,6 +127,8 @@ const CheckoutForm = () => {
         </div>
         <button
           type="submit"
+          onClick={() => {dispatch(clearCart())
+          }}
           style={{
             backgroundColor: '#4CAF50',
             color: 'white',

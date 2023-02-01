@@ -66,6 +66,36 @@ export default function Cart() {
             paddingTop: "100px",
 
         }}>
+            <div className="ContinueShopping" style={{
+                justifyContent: "left",
+                alignItems: "left",
+                marginBottom: "20px",
+            }}>
+                <Button variant="text" style={{
+                    color: "black",
+                    textShadow: "0 2px 8px rgba(0, 0, 0, 0.26)",
+                    fontSize: "0.9rem",
+                }} onClick={() => {
+                    window.location.href = "/";
+                }}>Continue Shopping</Button>
+            </div>
+            <div className="cart-header" style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "20px",
+            }}>
+                <h1 style={{
+                    textAlign: "center",
+                    fontSize: "2rem",
+                    fontWeight: "bold",
+                    color: "black",
+                    textShadow: "0 2px 8px rgba(0, 0, 0, 0.26)",
+                }}>
+                    Cart
+                </h1>
+            </div>
             <ul style={{
                 listStyle: "none",
                 padding: "0",
