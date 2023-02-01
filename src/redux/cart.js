@@ -19,21 +19,6 @@ export const cartSlice = createSlice({
             }
         },
         removeFromCart: (state, action) => {
-            // if (action.payload.quantity > 1) {
-            //     state.cartItems.map(item => {
-            //         if (item.productId === action.payload.productId) {
-            //             item.quantity -= 1;
-            //             state.quantity -= 1;
-            //         } else {
-            //             return item;
-            //         }
-            //         return;
-            //     })
-            // } else {
-            //     // state.quantity -= 1;
-            //     state.cartItems = state.cartItems.filter((cartItem) => cartItem.productId !== action.payload.productId);
-            //     state.quantity
-            // }
             state.cartItems = state.cartItems.filter((cartItem) => cartItem.productId !== action.payload.productId);
             state.quantity -= action.payload.quantity;
         },

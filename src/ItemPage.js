@@ -8,7 +8,6 @@ export default function ItemPage() {
 
     const item = useSelector((state) => state.itemPage.item);
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart.cartItems);
 
     return (
         <div id="itemPage" style={{

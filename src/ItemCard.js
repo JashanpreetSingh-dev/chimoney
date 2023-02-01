@@ -64,24 +64,6 @@ export default function ItemCard(props) {
                         fontFamily: "Monospace",
                         textAlign: "center",
                     }}>{props.item.name}</div>
-                    {/* <div className="item-card-description" style={{
-                        fontSize: "12px",
-                        textAlign: "left",
-                        padding: "10px",
-                        fontFamily: "Monospace",
-                    }}>
-                        {props.item.description}
-                    </div> */}
-                    {/* <div className="item-card-added" style={{
-                        fontSize: "12px",
-                        textAlign: "center",
-                        padding: "10px",
-                        fontFamily: "Monospace",
-                    }}>
-                        {
-                            isAdded ? "Added" : ""
-                        }
-                    </div> */}
                 </div>
             </Link>
 

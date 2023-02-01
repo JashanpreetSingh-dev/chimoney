@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { clearCart, removeFromCart } from "./redux/cart";
+import { removeFromCart } from "./redux/cart";
 import { Button } from "@mui/material";
 import ItemCounter from "./ItemCounter";
 
@@ -11,54 +11,6 @@ export default function Cart() {
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalItemsInCart = useSelector((state) => state.cart.quantity);
     const dispatch = useDispatch();
-
-    // The function to add an item to the cart
-    // const addToCart = (item) => {
-    //     if (cartItems.find((cartItem) => cartItem.id === item.id)) {
-    //         incrementQuantity(item);
-    //     } else {
-    //         setCartItems([...cartItems, item]);
-    //     }
-    // }
-
-    // The function to remove an item from the cart
-    // const removeFromCart = (item) => {
-    //     if (item.quantity > 1) {
-    //         decrementQuantity(item);
-    //     } else {
-    //         setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-    //     }
-    // }
-
-    // The function to clear the cart
-    // const clearCart = () => {
-    //     setCartItems([]);
-    // }
-
-    // The function to increment the quantity of an item in the cart
-    // const incrementQuantity = (item) => {
-    //     setCartItems(cartItems.map((cartItem) => {
-    //         if (cartItem.id === item.id) {
-    //             return { ...cartItem, quantity: cartItem.quantity + 1 };
-    //         } else {
-    //             return cartItem;
-    //         }
-    //     }));
-    // }
-
-    // The function to decrement the quantity of an item in the cart
-    // const decrementQuantity = (item) => {
-    //     setCartItems(cartItems.map((cartItem) => {
-    //         if (cartItem.id === item.id) {
-    //             return { ...cartItem, quantity: cartItem.quantity - 1 };
-    //         } else {
-    //             return cartItem;
-    //         }
-    //     }));
-    // }
-
-    // useEffect(() => {
-    // }, [cartItems]);
 
     return (
 
@@ -197,59 +149,6 @@ export default function Cart() {
 
                                 </div>
                             </div>
-                            {/* <Card sx={{ maxWidth: "70%", margin: "auto" }}
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "column",
-
-                                }}>
-                                <div className="cart-item-inner" style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                    alignItems: "left",
-
-                                }}>
-                                    <div className="card-item-img" style={{
-                                        width: "20%",
-                                        height: "100%",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}>
-                                        <CardMedia
-                                            image={item.img}
-                                            title={item.name}
-                                            style={{
-                                                height: 0,
-                                                padding: "56.25% 0 0 0",
-                                                width: "100%",
-
-
-                                            }}
-                                        ></CardMedia>
-                                    </div>
-                                    <div className="cart-item-info" style={{
-                                        width: "70%",
-                                        height: "100%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "left",
-                                        alignItems: "left",
-                                    }}>
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="div">
-                                                {item.name}
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <Button size="small" onClick={() => dispatch(removeFromCart(item))}>Remove</Button>
-                                        </CardActions>
-                                    </div>
-                                </div>
-
-
-                            </Card> */}
                         </li>
                     ))
                 }
@@ -268,7 +167,6 @@ export default function Cart() {
                 backgroundColor: "#660a78",
 
             }}>
-                {/* <h3 style={{}}>Total: ${cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}</h3> */}
                 <p style={{
                     color: "white",
                     fontSize: "1.2rem",

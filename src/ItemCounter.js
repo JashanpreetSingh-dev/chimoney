@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { increment, decrement, clearCart } from "./redux/cart";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ItemCounter({itemId}) {
@@ -32,7 +31,6 @@ export default function ItemCounter({itemId}) {
                 fontWeight: "bold",
             }} onClick={() => {
                 dispatch(increment(item));
-                // console.log(item);
             }}
              >+</button>
              <label style={{
